@@ -1,0 +1,39 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 20, "y": 19, "w": 18, "h": 16 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 2, "w": 16, "h": 14 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 300
+   },
+   "1": {
+    "frame": { "x": 20, "y": 1, "w": 18, "h": 17 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 1, "w": 16, "h": 15 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 300
+   },
+   "2": {
+    "frame": { "x": 1, "y": 1, "w": 18, "h": 18 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 300
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.30-x64",
+  "image": "chest.png",
+  "format": "RGBA8888",
+  "size": { "w": 38, "h": 35 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "chest-idle", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "chest-open", "from": 1, "to": 2, "direction": "forward" }
+  ]
+ }
+}

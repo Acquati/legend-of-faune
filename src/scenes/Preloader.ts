@@ -7,8 +7,13 @@ export default class Preloader extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image(TextureKeys.PhaserLogo, 'images/phaser3-logo.png')
-    this.load.image(TextureKeys.RedParticle, 'images/red.png')
+    this.load.aseprite(
+      TextureKeys.Faune,
+      'characters/faune.png',
+      'characters/faune.json'
+    )
+
+    this.load.aseprite(TextureKeys.Chest, 'items/chest.png', 'items/chest.json')
   }
 
   create() {

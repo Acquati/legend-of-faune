@@ -7,26 +7,27 @@ const windowWidth = Math.floor(window.innerWidth)
 const windowHeight = Math.floor(window.innerHeight)
 
 const GameConfig: Phaser.Types.Core.GameConfig = {
-  title: 'Phaser 3 Typescript Template',
-  url: '',
-  version: '1.0',
   width: windowWidth,
   height: windowHeight,
-  backgroundColor: '#000000',
-  type: Phaser.AUTO,
+  // zoom: 2,
   parent: 'game',
+  scene: [Preloader, MainScene],
+  title: 'Legend of Faune',
+  url: '',
+  version: '0.1',
+  disableContextMenu: true,
   physics: {
     default: 'arcade',
     arcade: {
       debug: true,
-      gravity: { y: 200 }
+      gravity: { y: 0 }
     }
   },
-  pixelArt: false,
-  // scale: {
-  //   zoom: 2
-  // },
-  scene: [Preloader, MainScene]
+  backgroundColor: '#000000',
+  antialiasGL: false,
+  pixelArt: true,
+  roundPixels: true
+  // powerPreference: 'high-performance'
 }
 
 export default GameConfig
