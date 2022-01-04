@@ -16,26 +16,26 @@
     "duration": 200
    },
    "2": {
-    "frame": { "x": 10, "y": 1, "w": 6, "h": 9 },
+    "frame": { "x": 10, "y": 1, "w": 8, "h": 9 },
     "rotated": false,
-    "trimmed": true,
-    "spriteSourceSize": { "x": 1, "y": 0, "w": 4, "h": 7 },
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
     "duration": 200
    },
    "3": {
-    "frame": { "x": 1, "y": 11, "w": 4, "h": 9 },
+    "frame": { "x": 1, "y": 11, "w": 8, "h": 9 },
     "rotated": false,
-    "trimmed": true,
-    "spriteSourceSize": { "x": 2, "y": 0, "w": 2, "h": 7 },
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
     "duration": 200
    },
    "4": {
-    "frame": { "x": 17, "y": 1, "w": 6, "h": 9 },
+    "frame": { "x": 10, "y": 11, "w": 8, "h": 9 },
     "rotated": false,
-    "trimmed": true,
-    "spriteSourceSize": { "x": 1, "y": 0, "w": 4, "h": 7 },
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
     "duration": 200
    }
@@ -45,7 +45,7 @@
   "version": "1.2.30-x64",
   "image": "coin.png",
   "format": "RGBA8888",
-  "size": { "w": 23, "h": 20 },
+  "size": { "w": 18, "h": 20 },
   "scale": "1",
   "frameTags": [
    { "name": "coin-idle", "from": 0, "to": 0, "direction": "forward" },

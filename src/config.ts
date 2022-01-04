@@ -2,15 +2,15 @@ import Preloader from './scenes/Preloader'
 import MainScene from './scenes/MainScene'
 import UserInterface from './scenes/UserInterface'
 
-// const windowWidth = Math.floor(window.innerWidth / 2)
-const windowWidth = Math.floor(window.innerWidth)
-// const windowHeight = Math.floor(window.innerHeight / 2)
-const windowHeight = Math.floor(window.innerHeight)
+const windowWidth = Math.floor(window.innerWidth / 2)
+// const windowWidth = Math.floor(window.innerWidth)
+const windowHeight = Math.floor(window.innerHeight / 2)
+// const windowHeight = Math.floor(window.innerHeight)
 
 const GameConfig: Phaser.Types.Core.GameConfig = {
   width: windowWidth,
   height: windowHeight,
-  // zoom: 2,
+  zoom: 2,
   parent: 'game',
   scene: [Preloader, MainScene, UserInterface],
   title: 'Legend of Faune',
@@ -20,7 +20,7 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       gravity: { y: 0 }
     }
   },
