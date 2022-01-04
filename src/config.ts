@@ -1,5 +1,6 @@
 import Preloader from './scenes/Preloader'
 import MainScene from './scenes/MainScene'
+import UserInterface from './scenes/UserInterface'
 
 // const windowWidth = Math.floor(window.innerWidth / 2)
 const windowWidth = Math.floor(window.innerWidth)
@@ -11,7 +12,7 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
   height: windowHeight,
   // zoom: 2,
   parent: 'game',
-  scene: [Preloader, MainScene],
+  scene: [Preloader, MainScene, UserInterface],
   title: 'Legend of Faune',
   url: '',
   version: '0.1',

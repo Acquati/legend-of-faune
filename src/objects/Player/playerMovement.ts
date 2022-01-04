@@ -2,7 +2,7 @@ import { FauneAnimsKeys } from '../../consts/AnimsKeys'
 
 const moveRight = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
   player.scaleX = 1
-  player.body.offset.x = player.body.width / 2
+  player.body.offset.x = player.body.width
 
   player.setVelocity(speed, 0)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
@@ -10,7 +10,7 @@ const moveRight = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
 
 const moveLeft = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
   player.scaleX = -1
-  player.body.offset.x = 16 + player.body.width / 2
+  player.body.offset.x = player.body.width * 2
 
   player.setVelocity(-speed, 0)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
