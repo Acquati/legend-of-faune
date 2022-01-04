@@ -88,11 +88,10 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
 
     if (this._health <= 0) {
       this.healthState = HealthState.DEAD
-      this.setVelocity(0, 0)
       this.body.destroy()
+      this.setDepth(DepthKeys.Enemy - 1)
       this.anims.play({ key: Lizard01AnimsKeys.DieSide })
     } else {
-      // this.setVelocity(direction.x, direction.y)
       this.damageTimer = 0
       this.healthState = HealthState.DAMAGE
       this.setTint(0xff9999)
