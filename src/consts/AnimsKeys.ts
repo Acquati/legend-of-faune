@@ -1,6 +1,6 @@
-export enum ChestAnimsKeys {
-  Idle = 'chest-idle',
-  Open = 'chest-open'
+export enum CoinAnimsKeys {
+  Idle = 'coin-idle',
+  Rotating = 'coin-rotating'
 }
 
 export enum FauneAnimsKeys {
@@ -20,4 +20,21 @@ export enum FauneAnimsKeys {
   PushSide = 'faune-push-side',
   PushUp = 'faune-push-up',
   DieSide = 'faune-die-side'
+}
+
+export enum FlyingKnifeAnimsKeys {
+  Down = 'flying-knife-down',
+  Side = 'flying-knife-side',
+  Up = 'flying-knife-up'
+}
+
+export enum Lizard01AnimsKeys {
+  IdleSide = 'lizard01-idle-side',
+  WalkSide = 'lizard01-walk-side',
+  DieSide = 'lizard01-die-side'
+}
+
+export enum TreasureChestAnimsKeys {
+  Idle = 'treasure-chest-idle',
+  Open = 'treasure-chest-open'
 }

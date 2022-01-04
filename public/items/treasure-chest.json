@@ -27,13 +27,13 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.30-x64",
-  "image": "chest.png",
+  "image": "treasure-chest.png",
   "format": "RGBA8888",
   "size": { "w": 38, "h": 35 },
   "scale": "1",
   "frameTags": [
-   { "name": "chest-idle", "from": 0, "to": 0, "direction": "forward" },
-   { "name": "chest-open", "from": 1, "to": 2, "direction": "forward" }
+   { "name": "treasure-chest-idle", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "treasure-chest-open", "from": 1, "to": 2, "direction": "forward" }
   ]
  }
 }

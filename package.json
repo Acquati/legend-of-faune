@@ -1,7 +1,7 @@
 {
-  "name": "phaser-3-typescript-template",
+  "name": "legend-of-faune",
   "version": "1.0.0",
-  "description": "A Phaser 3 Framework template for Typescript compiled with Parcel v2.",
+  "description": "Legend of Faune, a Phaser 3 game, made with Typescript and compiled with Parcel v2.",
   "license": "MIT",
   "keywords": [
     "Phaser",
@@ -20,9 +20,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acquati/phaser-3-typescript-template.git"
+    "url": "git+https://github.com/Acquati/legend-of-faune"
   },
-  "homepage": "https://github.com/acquati/phaser-3-typescript-template.git",
+  "homepage": "https://github.com/Acquati/legend-of-faune",
   "scripts": {
     "dev": "parcel src/index.html -p 8080",
     "build": "parcel build src/index.html -p 8080 --out-dir dist",

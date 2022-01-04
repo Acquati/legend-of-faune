@@ -1,10 +1,12 @@
 <p align="center">
-  <img width=60% src="public/images/phaser3-logo.png">
+  <img width=60% src="public/images/dungeon-crawler.png">
 </p>
 
-# Phaser 3 Typescript Template
+# Legend of Faune
 
-A [Phaser 3 Framework](https://phaser.io/phaser3) template for [Typescript](https://www.typescriptlang.org/) compiled with [Parcel v2](https://v2.parceljs.org/).
+A [Phaser 3 Framework](https://phaser.io/phaser3) game, made with [Typescript](https://www.typescriptlang.org/) and compiled with [Parcel v2](https://v2.parceljs.org/).
+
+'Up', 'Down', 'Left' and 'Right' keys move the character, 'Space' throw knifes and open chests.
 
 ## Setup
 
@@ -15,8 +17,8 @@ Install [Node.js](https://nodejs.org/en) and [Yarn](https://classic.yarnpkg.com/
 ### Installing
 
 ```bash
-git clone https://github.com/acquati/phaser-3-typescript-template.git
-cd phaser-3-typescript-template
+git clone https://github.com/Acquati/legend-of-faune
+cd legend-of-faune
 yarn install
 
 # Development

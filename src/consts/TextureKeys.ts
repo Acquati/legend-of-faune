@@ -1,6 +1,14 @@
 enum TextureKeys {
-  Chest = 'chest',
-  Faune = 'faune'
+  Dungeon01Tiles = 'dungeon01-tiles',
+  Dungeon01 = 'dungeon01',
+  Faune = 'faune',
+  Lizard01 = 'lizard01',
+  FlyingKnife = 'flying-knife',
+  TreasureChest = 'treasure-chest',
+  Coin = 'coin',
+  UIHeartEmpty = 'ui-heart-empty',
+  UIHeartHalf = 'ui-heart-half',
+  UIHeartFull = 'ui-heart-full'
 }
 
 export default TextureKeys
