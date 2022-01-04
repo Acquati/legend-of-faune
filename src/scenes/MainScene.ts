@@ -4,7 +4,6 @@ import SceneKeys from '../consts/SceneKeys'
 import TextureKeys from '../consts/TextureKeys'
 import Lizard01 from '../objects/Lizard01'
 import Player from '../objects/Player'
-import '../objects/Player'
 import TreasureChest from '../objects/TreasureChest'
 import { sceneEvents } from '../events/EventCenter'
 import { debugDraw } from '../utils/debug'
@@ -58,7 +57,7 @@ export default class MainScene extends Phaser.Scene {
       // maxSize: 3
     })
 
-    this.player = this.add.player(48, 80, TextureKeys.Faune)
+    this.player = new Player(this, 48, 80, TextureKeys.Faune)
     this.player.setFlyingKnifes(this.flyingKnifes)
 
     this.lizards01 = this.physics.add.group({
@@ -104,13 +103,6 @@ export default class MainScene extends Phaser.Scene {
     )
 
     this.cameras.main.startFollow(this.player, true)
-
-    // this.phaserLogo = new PhaserLogo({
-    //   scene: this,
-    //   x: Math.floor(Number(GameConfig.width) / 2),
-    //   y: Math.floor(Number(GameConfig.height) / 2),
-    //   texture: TextureKeys.PhaserLogo
-    // })
   }
 
   private handlePlayerChestCollision(

@@ -1,11 +1,11 @@
-import TextureKeys from '../../consts/TextureKeys'
 import DepthKeys from '../../consts/DepthKeys'
+import EventKeys from '../../consts/EventKeys'
+import TextureKeys from '../../consts/TextureKeys'
 import { FauneAnimsKeys } from '../../consts/AnimsKeys'
 import { FlyingKnifeAnimsKeys } from '../../consts/AnimsKeys'
-import EventKeys from '../../consts/EventKeys'
-import playerMovement from './playerMovement'
 import TreasureChest from '../TreasureChest'
 import { sceneEvents } from '../../events/EventCenter'
+import playerMovement from './playerMovement'
 
 declare global {
   namespace Phaser.GameObjects {
@@ -52,6 +52,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture, frame)
 
     this.anims.play(FauneAnimsKeys.WalkDown)
+
+    scene.add.existing(this)
+    scene.physics.add.existing(this)
+    this.setDepth(DepthKeys.Player)
+
+    const body = this.body as Phaser.Physics.Arcade.Body
+    body.setSize(16, 16)
   }
 
   setFlyingKnifes(flyingKnifes: Phaser.Physics.Arcade.Group) {
@@ -217,29 +224,3 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     playerMovement(cursors, this, this.speed)
   }
 }
-
-Phaser.GameObjects.GameObjectFactory.register(
-  'player',
-  function (
-    this: Phaser.GameObjects.GameObjectFactory,
-    x: number,
-    y: number,
-    texture: string,
-    frame?: string | number
-  ) {
-    const sprite = new Player(this.scene, x, y, texture, frame)
-    sprite.setDepth(DepthKeys.Player)
-
-    this.displayList.add(sprite)
-    this.updateList.add(sprite)
-
-    this.scene.physics.world.enableBody(
-      sprite,
-      Phaser.Physics.Arcade.DYNAMIC_BODY
-    )
-
-    sprite.body.setSize(16, 16)
-
-    return sprite
-  }
-)
