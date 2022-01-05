@@ -1,10 +1,9 @@
 import DepthKeys from '../../consts/DepthKeys'
 import EventKeys from '../../consts/EventKeys'
-import TextureKeys from '../../consts/TextureKeys'
 import { FauneAnimsKeys } from '../../consts/AnimsKeys'
-import { FlyingKnifeAnimsKeys } from '../../consts/AnimsKeys'
 import TreasureChest from '../TreasureChest'
 import { sceneEvents } from '../../events/EventCenter'
+import throwFlyingKnife from './throwFlyingKnife'
 import playerMovement from './playerMovement'
 
 declare global {
@@ -69,87 +68,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.activeChest = chest
   }
 
-  private throwFlyingKnife() {
-    if (!this.flyingKnifes) return
-
-    const parts = this.anims.currentAnim.key.split('-')
-    const direction = parts[2]
-
-    const vector = new Phaser.Math.Vector2(0, 0)
-
-    let flyingKnife: Phaser.Physics.Arcade.Sprite
-
-    switch (direction) {
-      case 'up':
-        flyingKnife = this.flyingKnifes.get(
-          this.x,
-          this.y - 10,
-          TextureKeys.FlyingKnife
-        )
-        flyingKnife.setDepth(DepthKeys.Player - 1)
-        flyingKnife.anims.play(
-          {
-            key: FlyingKnifeAnimsKeys.Up,
-            repeat: -1
-          },
-          true
-        )
-        vector.y = -1
-        break
-
-      case 'down':
-        flyingKnife = this.flyingKnifes.get(
-          this.x,
-          this.y + 10,
-          TextureKeys.FlyingKnife
-        )
-        flyingKnife.setDepth(DepthKeys.PlayerWeapon)
-        flyingKnife.anims.play(
-          {
-            key: FlyingKnifeAnimsKeys.Down,
-            repeat: -1
-          },
-          true
-        )
-        vector.y = 1
-        break
-
-      default:
-      case 'side':
-        if (this.scaleX < 0) {
-          flyingKnife = this.flyingKnifes.get(
-            this.x - 10,
-            this.y,
-            TextureKeys.FlyingKnife
-          )
-          flyingKnife.scaleX = -1
-          flyingKnife.body.offset.x = flyingKnife.body.width
-          vector.x = -1
-        } else {
-          flyingKnife = this.flyingKnifes.get(
-            this.x + 10,
-            this.y,
-            TextureKeys.FlyingKnife
-          )
-          flyingKnife.scaleX = 1
-          flyingKnife.body.offset.x = 0
-          vector.x = 1
-        }
-
-        flyingKnife.setDepth(DepthKeys.PlayerWeapon)
-        flyingKnife.anims.play(
-          {
-            key: FlyingKnifeAnimsKeys.Side,
-            repeat: -1
-          },
-          true
-        )
-        break
-    }
-
-    flyingKnife.setVelocity(vector.x * 175, vector.y * 175)
-  }
-
   handleDamage(direction: Phaser.Math.Vector2) {
     if (this._health <= 0) {
       return
@@ -161,6 +79,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     if (this._health <= 0) {
       this.healthState = HealthState.DEAD
+      this.setDepth(DepthKeys.Enemy - 1)
       this.setVelocity(0, 0)
       this.anims.play({ key: FauneAnimsKeys.DieSide })
     } else {
@@ -206,7 +125,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         sceneEvents.emit(EventKeys.PlayerCoinsChanged, this._coins)
       } else {
         if (this.flyingKnifesTimer === 0) {
-          this.throwFlyingKnife()
+          throwFlyingKnife(this.flyingKnifes, this)
           this.flyingKnifesOnCooldown = true
         }
       }
