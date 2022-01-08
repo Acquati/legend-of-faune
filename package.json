@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Acquati/legend-of-faune",
   "scripts": {
     "dev": "parcel src/index.html -p 8080",
-    "build": "parcel build src/index.html -p 8080 --out-dir dist",
+    "build": "parcel build src/index.html --dist-dir dist",
     "start": "parcel serve src/index.html -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx"
