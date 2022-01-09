@@ -1,5 +1,37 @@
 import { FauneAnimsKeys } from '../../consts/AnimsKeys'
 
+const moveUpRight = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
+  player.scaleX = 1
+  player.body.offset.x = player.body.width
+
+  player.setVelocity(speed, -speed)
+  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+}
+
+const moveRightDown = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
+  player.scaleX = 1
+  player.body.offset.x = player.body.width
+
+  player.setVelocity(speed, speed)
+  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+}
+
+const moveDownLeft = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
+  player.scaleX = -1
+  player.body.offset.x = player.body.width * 2
+
+  player.setVelocity(-speed, speed)
+  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+}
+
+const moveLeftUp = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
+  player.scaleX = -1
+  player.body.offset.x = player.body.width * 2
+
+  player.setVelocity(-speed, -speed)
+  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+}
+
 const moveUp = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
   player.setVelocity(0, -speed)
   player.anims.play({ key: FauneAnimsKeys.WalkUp }, true)
@@ -37,48 +69,28 @@ const playerMovement = (
     cursors.down?.isUp &&
     cursors.left?.isUp
   ) {
-    if (cursors.right?.timeDown < cursors.up?.timeDown) {
-      moveUp(player, speed)
-    } else {
-      moveRight(player, speed)
-    }
-    return
+    moveUpRight(player, speed)
   } else if (
     cursors.up?.isUp &&
     cursors.right?.isDown &&
     cursors.down?.isDown &&
     cursors.left?.isUp
   ) {
-    if (cursors.right?.timeDown < cursors.down?.timeDown) {
-      moveDown(player, speed)
-    } else {
-      moveRight(player, speed)
-    }
-    return
+    moveRightDown(player, speed)
   } else if (
     cursors.up?.isUp &&
     cursors.right?.isUp &&
     cursors.down?.isDown &&
     cursors.left?.isDown
   ) {
-    if (cursors.left?.timeDown < cursors.down?.timeDown) {
-      moveDown(player, speed)
-    } else {
-      moveLeft(player, speed)
-    }
-    return
+    moveDownLeft(player, speed)
   } else if (
     cursors.up?.isDown &&
     cursors.right?.isUp &&
     cursors.down?.isUp &&
     cursors.left?.isDown
   ) {
-    if (cursors.left?.timeDown < cursors.up?.timeDown) {
-      moveUp(player, speed)
-    } else {
-      moveLeft(player, speed)
-    }
-    return
+    moveLeftUp(player, speed)
   } else if (
     cursors.up?.isDown &&
     cursors.right?.isUp &&
@@ -90,7 +102,6 @@ const playerMovement = (
     } else {
       moveUp(player, speed)
     }
-    return
   } else if (
     cursors.up?.isUp &&
     cursors.right?.isDown &&
@@ -102,7 +113,6 @@ const playerMovement = (
     } else {
       moveRight(player, speed)
     }
-    return
   } else if (
     cursors.up?.isDown &&
     cursors.right?.isUp &&
@@ -110,7 +120,6 @@ const playerMovement = (
     cursors.left?.isUp
   ) {
     moveUp(player, speed)
-    return
   } else if (
     cursors.up?.isUp &&
     cursors.right?.isDown &&
@@ -118,7 +127,6 @@ const playerMovement = (
     cursors.left?.isUp
   ) {
     moveRight(player, speed)
-    return
   } else if (
     cursors.up?.isUp &&
     cursors.right?.isUp &&
@@ -126,7 +134,6 @@ const playerMovement = (
     cursors.left?.isUp
   ) {
     moveDown(player, speed)
-    return
   } else if (
     cursors.up?.isUp &&
     cursors.right?.isUp &&
@@ -134,7 +141,6 @@ const playerMovement = (
     cursors.left?.isDown
   ) {
     moveLeft(player, speed)
-    return
   } else {
     player.setVelocity(0, 0)
     const parts = player.anims.currentAnim.key.split('-')
