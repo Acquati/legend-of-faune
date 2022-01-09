@@ -7,6 +7,7 @@
 A [Phaser 3 Framework](https://phaser.io/phaser3) game, made with [Typescript](https://www.typescriptlang.org/) and compiled with [Parcel v2](https://v2.parceljs.org/).
 
 'Up', 'Down', 'Left' and 'Right' keys move the character, 'Space' throw knifes and open chests.
+Mobile controls on screen.
 
 Play the [demo on itchi.io](https://acquati.itch.io/legend-of-faune-alpha-test).
 
