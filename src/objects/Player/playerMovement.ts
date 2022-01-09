@@ -1,5 +1,10 @@
 import { FauneAnimsKeys } from '../../consts/AnimsKeys'
 
+const moveUp = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
+  player.setVelocity(0, -speed)
+  player.anims.play({ key: FauneAnimsKeys.WalkUp }, true)
+}
+
 const moveRight = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
   player.scaleX = 1
   player.body.offset.x = player.body.width
@@ -8,22 +13,17 @@ const moveRight = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
 }
 
+const moveDown = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
+  player.setVelocity(0, speed)
+  player.anims.play({ key: FauneAnimsKeys.WalkDown }, true)
+}
+
 const moveLeft = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
   player.scaleX = -1
   player.body.offset.x = player.body.width * 2
 
   player.setVelocity(-speed, 0)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
-}
-
-const moveUp = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
-  player.setVelocity(0, -speed)
-  player.anims.play({ key: FauneAnimsKeys.WalkUp }, true)
-}
-
-const moveDown = (player: Phaser.Physics.Arcade.Sprite, speed: number) => {
-  player.setVelocity(0, speed)
-  player.anims.play({ key: FauneAnimsKeys.WalkDown }, true)
 }
 
 const playerMovement = (
@@ -43,9 +43,7 @@ const playerMovement = (
       moveRight(player, speed)
     }
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isUp &&
     cursors.right?.isDown &&
     cursors.down?.isDown &&
@@ -57,9 +55,7 @@ const playerMovement = (
       moveRight(player, speed)
     }
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isUp &&
     cursors.right?.isUp &&
     cursors.down?.isDown &&
@@ -71,9 +67,7 @@ const playerMovement = (
       moveLeft(player, speed)
     }
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isDown &&
     cursors.right?.isUp &&
     cursors.down?.isUp &&
@@ -85,9 +79,7 @@ const playerMovement = (
       moveLeft(player, speed)
     }
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isDown &&
     cursors.right?.isUp &&
     cursors.down?.isDown &&
@@ -99,9 +91,7 @@ const playerMovement = (
       moveUp(player, speed)
     }
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isUp &&
     cursors.right?.isDown &&
     cursors.down?.isUp &&
@@ -113,9 +103,7 @@ const playerMovement = (
       moveRight(player, speed)
     }
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isDown &&
     cursors.right?.isUp &&
     cursors.down?.isUp &&
@@ -123,9 +111,7 @@ const playerMovement = (
   ) {
     moveUp(player, speed)
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isUp &&
     cursors.right?.isDown &&
     cursors.down?.isUp &&
@@ -133,9 +119,7 @@ const playerMovement = (
   ) {
     moveRight(player, speed)
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isUp &&
     cursors.right?.isUp &&
     cursors.down?.isDown &&
@@ -143,9 +127,7 @@ const playerMovement = (
   ) {
     moveDown(player, speed)
     return
-  }
-
-  if (
+  } else if (
     cursors.up?.isUp &&
     cursors.right?.isUp &&
     cursors.down?.isUp &&
@@ -153,12 +135,12 @@ const playerMovement = (
   ) {
     moveLeft(player, speed)
     return
+  } else {
+    player.setVelocity(0, 0)
+    const parts = player.anims.currentAnim.key.split('-')
+    parts[1] = 'idle'
+    player.anims.play(parts.join('-'))
   }
-
-  player.setVelocity(0, 0)
-  const parts = player.anims.currentAnim.key.split('-')
-  parts[1] = 'idle'
-  player.anims.play(parts.join('-'))
 }
 
 export default playerMovement
