@@ -32,24 +32,10 @@ const playerMovement = (
   speed: number
 ) => {
   if (
-    cursors.right?.isDown &&
-    cursors.left?.isDown &&
-    cursors.up?.isUp &&
-    cursors.down?.isUp
-  ) {
-    if (cursors.right?.timeDown < cursors.left?.timeDown) {
-      moveLeft(player, speed)
-    } else {
-      moveRight(player, speed)
-    }
-    return
-  }
-
-  if (
-    cursors.right?.isDown &&
-    cursors.left?.isUp &&
     cursors.up?.isDown &&
-    cursors.down?.isUp
+    cursors.right?.isDown &&
+    cursors.down?.isUp &&
+    cursors.left?.isUp
   ) {
     if (cursors.right?.timeDown < cursors.up?.timeDown) {
       moveUp(player, speed)
@@ -60,10 +46,10 @@ const playerMovement = (
   }
 
   if (
-    cursors.right?.isDown &&
-    cursors.left?.isUp &&
     cursors.up?.isUp &&
-    cursors.down?.isDown
+    cursors.right?.isDown &&
+    cursors.down?.isDown &&
+    cursors.left?.isUp
   ) {
     if (cursors.right?.timeDown < cursors.down?.timeDown) {
       moveDown(player, speed)
@@ -74,24 +60,10 @@ const playerMovement = (
   }
 
   if (
-    cursors.right?.isUp &&
-    cursors.left?.isDown &&
-    cursors.up?.isDown &&
-    cursors.down?.isUp
-  ) {
-    if (cursors.left?.timeDown < cursors.up?.timeDown) {
-      moveUp(player, speed)
-    } else {
-      moveLeft(player, speed)
-    }
-    return
-  }
-
-  if (
-    cursors.right?.isUp &&
-    cursors.left?.isDown &&
     cursors.up?.isUp &&
-    cursors.down?.isDown
+    cursors.right?.isUp &&
+    cursors.down?.isDown &&
+    cursors.left?.isDown
   ) {
     if (cursors.left?.timeDown < cursors.down?.timeDown) {
       moveDown(player, speed)
@@ -102,10 +74,24 @@ const playerMovement = (
   }
 
   if (
-    cursors.right?.isUp &&
-    cursors.left?.isUp &&
     cursors.up?.isDown &&
-    cursors.down?.isDown
+    cursors.right?.isUp &&
+    cursors.down?.isUp &&
+    cursors.left?.isDown
+  ) {
+    if (cursors.left?.timeDown < cursors.up?.timeDown) {
+      moveUp(player, speed)
+    } else {
+      moveLeft(player, speed)
+    }
+    return
+  }
+
+  if (
+    cursors.up?.isDown &&
+    cursors.right?.isUp &&
+    cursors.down?.isDown &&
+    cursors.left?.isUp
   ) {
     if (cursors.up?.timeDown < cursors.down?.timeDown) {
       moveDown(player, speed)
@@ -116,42 +102,56 @@ const playerMovement = (
   }
 
   if (
+    cursors.up?.isUp &&
     cursors.right?.isDown &&
-    cursors.left?.isUp &&
-    cursors.up?.isUp &&
-    cursors.down?.isUp
+    cursors.down?.isUp &&
+    cursors.left?.isDown
   ) {
-    moveRight(player, speed)
+    if (cursors.right?.timeDown < cursors.left?.timeDown) {
+      moveLeft(player, speed)
+    } else {
+      moveRight(player, speed)
+    }
     return
   }
 
   if (
-    cursors.right?.isUp &&
-    cursors.left?.isDown &&
-    cursors.up?.isUp &&
-    cursors.down?.isUp
-  ) {
-    moveLeft(player, speed)
-    return
-  }
-
-  if (
-    cursors.right?.isUp &&
-    cursors.left?.isUp &&
     cursors.up?.isDown &&
-    cursors.down?.isUp
+    cursors.right?.isUp &&
+    cursors.down?.isUp &&
+    cursors.left?.isUp
   ) {
     moveUp(player, speed)
     return
   }
 
   if (
-    cursors.right?.isUp &&
-    cursors.left?.isUp &&
     cursors.up?.isUp &&
-    cursors.down?.isDown
+    cursors.right?.isDown &&
+    cursors.down?.isUp &&
+    cursors.left?.isUp
+  ) {
+    moveRight(player, speed)
+    return
+  }
+
+  if (
+    cursors.up?.isUp &&
+    cursors.right?.isUp &&
+    cursors.down?.isDown &&
+    cursors.left?.isUp
   ) {
     moveDown(player, speed)
+    return
+  }
+
+  if (
+    cursors.up?.isUp &&
+    cursors.right?.isUp &&
+    cursors.down?.isUp &&
+    cursors.left?.isDown
+  ) {
+    moveLeft(player, speed)
     return
   }
 
