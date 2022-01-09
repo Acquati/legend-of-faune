@@ -28,9 +28,9 @@ enum HealthState {
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE
   private damageTimer = 0
+  private speed = 100
   private flyingKnifesTimer = 0
   private flyingKnifesOnCooldown = false
-  private speed = 100
   private flyingKnifes!: Phaser.Physics.Arcade.Group
   private activeChest?: TreasureChest
 
@@ -40,6 +40,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   private _coins = 0
+  get coins() {
+    return this._coins
+  }
 
   constructor(
     scene: Phaser.Scene,

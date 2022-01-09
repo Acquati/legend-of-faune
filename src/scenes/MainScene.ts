@@ -2,6 +2,7 @@ import DepthKeys from '../consts/DepthKeys'
 import EventKeys from '../consts/EventKeys'
 import SceneKeys from '../consts/SceneKeys'
 import TextureKeys from '../consts/TextureKeys'
+import GameConfig from '../config'
 import Lizard01 from '../objects/Lizard01'
 import Player from '../objects/Player'
 import TreasureChest from '../objects/TreasureChest'
@@ -10,10 +11,11 @@ import { debugDraw } from '../utils/debug'
 
 export default class MainScene extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys
+  private joyStick!: any
   private player!: Player
+  private flyingKnifes!: Phaser.Physics.Arcade.Group
   private lizards01!: Phaser.Physics.Arcade.Group
   private playerLizards01Collider!: Phaser.Physics.Arcade.Collider
-  private flyingKnifes!: Phaser.Physics.Arcade.Group
 
   constructor() {
     super({ key: SceneKeys.MainScene })
@@ -25,6 +27,36 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     this.scene.run(SceneKeys.UserInterface)
+
+    const joyStickConfig = {
+      radius: 40,
+      x: 20,
+      y: 20
+    }
+
+    this.joyStick = this.plugins
+      .get('rexVirtualJoystick')
+      .add(this, {
+        x: joyStickConfig.radius + joyStickConfig.x,
+        y:
+          Number(GameConfig.height) -
+          (joyStickConfig.radius + joyStickConfig.y),
+        radius: joyStickConfig.radius,
+        base: this.add.circle(0, 0, joyStickConfig.radius, 0x888888, 0.2),
+        thumb: this.add.circle(
+          0,
+          0,
+          Math.floor(joyStickConfig.radius / 2),
+          0xcccccc,
+          0.2
+        ),
+        dir: '8dir', // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
+        // fixed: true,
+        forceMin: 10
+        // enable: true
+      })
+      .on('update', this.joyStickUpdate, this)
+    this.joyStickUpdate()
 
     const map = this.make.tilemap({ key: TextureKeys.Dungeon01 })
     const tileset = map.addTilesetImage(
@@ -103,6 +135,57 @@ export default class MainScene extends Phaser.Scene {
     )
 
     this.cameras.main.startFollow(this.player, true)
+  }
+
+  private joyStickUpdate() {
+    const cursorKeys = this.joyStick.createCursorKeys()
+
+    if (cursorKeys.up.isDown && cursorKeys.right.isDown) {
+      this.cursors.up.isDown = true
+      this.cursors.right.isDown = true
+      this.cursors.down.isDown = false
+      this.cursors.left.isDown = false
+    } else if (cursorKeys.right.isDown && cursorKeys.down.isDown) {
+      this.cursors.up.isDown = false
+      this.cursors.right.isDown = true
+      this.cursors.down.isDown = true
+      this.cursors.left.isDown = false
+    } else if (cursorKeys.down.isDown && cursorKeys.left.isDown) {
+      this.cursors.up.isDown = false
+      this.cursors.right.isDown = false
+      this.cursors.down.isDown = true
+      this.cursors.left.isDown = true
+    } else if (cursorKeys.left.isDown && cursorKeys.up.isDown) {
+      this.cursors.up.isDown = true
+      this.cursors.right.isDown = false
+      this.cursors.down.isDown = false
+      this.cursors.left.isDown = true
+    } else if (cursorKeys.up.isDown) {
+      this.cursors.up.isDown = true
+      this.cursors.right.isDown = false
+      this.cursors.down.isDown = false
+      this.cursors.left.isDown = false
+    } else if (cursorKeys.right.isDown) {
+      this.cursors.up.isDown = false
+      this.cursors.right.isDown = true
+      this.cursors.down.isDown = false
+      this.cursors.left.isDown = false
+    } else if (cursorKeys.down.isDown) {
+      this.cursors.up.isDown = false
+      this.cursors.right.isDown = false
+      this.cursors.down.isDown = true
+      this.cursors.left.isDown = false
+    } else if (cursorKeys.left.isDown) {
+      this.cursors.up.isDown = false
+      this.cursors.right.isDown = false
+      this.cursors.down.isDown = false
+      this.cursors.left.isDown = true
+    } else {
+      this.cursors.up.isDown = false
+      this.cursors.right.isDown = false
+      this.cursors.down.isDown = false
+      this.cursors.left.isDown = false
+    }
   }
 
   private handlePlayerChestCollision(
