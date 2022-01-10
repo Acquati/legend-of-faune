@@ -2,6 +2,7 @@ import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-p
 import Preloader from './scenes/Preloader'
 import MainScene from './scenes/MainScene'
 import UserInterface from './scenes/UserInterface'
+import GameOver from './scenes/GameOver'
 
 const windowWidth = Math.floor(window.innerWidth / 2)
 const windowHeight = Math.floor(window.innerHeight / 2)
@@ -11,7 +12,7 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
   height: windowHeight,
   zoom: 2,
   parent: 'game',
-  scene: [Preloader, MainScene, UserInterface],
+  scene: [Preloader, MainScene, UserInterface, GameOver],
   title: 'Legend of Faune',
   url: '',
   version: '0.1',

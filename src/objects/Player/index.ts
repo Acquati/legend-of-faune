@@ -1,5 +1,6 @@
 import DepthKeys from '../../consts/DepthKeys'
 import EventKeys from '../../consts/EventKeys'
+import SceneKeys from '../../consts/SceneKeys'
 import { FauneAnimsKeys } from '../../consts/AnimsKeys'
 import TreasureChest from '../TreasureChest'
 import { sceneEvents } from '../../events/EventCenter'
@@ -85,6 +86,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.setDepth(DepthKeys.Enemy - 1)
       this.setVelocity(0, 0)
       this.anims.play({ key: FauneAnimsKeys.DieSide })
+      this.scene.time.delayedCall(
+        1000,
+        () => this.scene.scene.run(SceneKeys.GameOver),
+        [],
+        this
+      )
     } else {
       this.setVelocity(direction.x, direction.y)
       this.damageTimer = 0
@@ -102,7 +109,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
       case HealthState.DAMAGE:
         this.damageTimer += delta
-        if (this.damageTimer >= 250) {
+        if (this.damageTimer >= 500) {
           this.healthState = HealthState.IDLE
           this.damageTimer = 0
           this.clearTint()

@@ -44,14 +44,12 @@ export default class MainScene extends Phaser.Scene {
       x: joyStickConfig.radius + joyStickConfig.x,
       y: Number(GameConfig.height) - (joyStickConfig.radius + joyStickConfig.y),
       radius: joyStickConfig.radius,
-      base: this.add.circle(0, 0, joyStickConfig.radius, 0x888888, 0.2),
-      thumb: this.add.circle(
-        0,
-        0,
-        Math.floor(joyStickConfig.radius / 2),
-        0xcccccc,
-        0.2
-      ),
+      base: this.add
+        .circle(0, 0, joyStickConfig.radius, 0x888888, 0.2)
+        .setDepth(DepthKeys.UserInterface),
+      thumb: this.add
+        .circle(0, 0, Math.floor(joyStickConfig.radius / 2), 0xcccccc, 0.2)
+        .setDepth(DepthKeys.UserInterface),
       dir: '8dir', // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
       // fixed: true,
       forceMin: 10
@@ -211,7 +209,7 @@ export default class MainScene extends Phaser.Scene {
     const dx = this.player.x - lizard01.x
     const dy = this.player.y - lizard01.y
 
-    const direction = new Phaser.Math.Vector2(dx, dy).normalize().scale(150)
+    const direction = new Phaser.Math.Vector2(dx, dy).normalize().scale(75)
 
     this.player.handleDamage(direction)
 
