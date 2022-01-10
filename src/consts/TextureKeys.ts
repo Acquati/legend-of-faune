@@ -8,7 +8,8 @@ enum TextureKeys {
   Coin = 'coin',
   UIHeartEmpty = 'ui-heart-empty',
   UIHeartHalf = 'ui-heart-half',
-  UIHeartFull = 'ui-heart-full'
+  UIHeartFull = 'ui-heart-full',
+  FlyingKnifeButton = 'flying-knife-button'
 }
 
 export default TextureKeys

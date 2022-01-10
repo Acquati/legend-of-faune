@@ -28,7 +28,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.run(SceneKeys.UserInterface)
+    this.scene.run(SceneKeys.UserInterface, { cursors: this.cursors })
 
     const joyStickConfig = {
       radius: 40,

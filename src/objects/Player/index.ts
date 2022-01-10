@@ -28,7 +28,7 @@ enum HealthState {
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE
   private damageTimer = 0
-  private speed = 100
+  private speed = 80
   private flyingKnifesTimer = 0
   private flyingKnifesOnCooldown = false
   private flyingKnifes!: Phaser.Physics.Arcade.Group

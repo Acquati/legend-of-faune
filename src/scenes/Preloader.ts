@@ -44,6 +44,10 @@ export default class Preloader extends Phaser.Scene {
       TextureKeys.UIHeartEmpty,
       'user-interface/ui-heart-empty.png'
     )
+    this.load.image(
+      TextureKeys.FlyingKnifeButton,
+      'user-interface/flying-knife-button.png'
+    )
   }
 
   create() {

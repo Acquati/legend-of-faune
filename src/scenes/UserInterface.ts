@@ -1,3 +1,4 @@
+import GameConfig from '../config'
 import DepthKeys from '../consts/DepthKeys'
 import EventKeys from '../consts/EventKeys'
 import SceneKeys from '../consts/SceneKeys'
@@ -6,9 +7,14 @@ import { sceneEvents } from '../events/EventCenter'
 
 export default class UserInterface extends Phaser.Scene {
   private hearts!: Phaser.GameObjects.Group
+  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys
 
   constructor() {
     super({ key: SceneKeys.UserInterface })
+  }
+
+  init(data: { cursors: Phaser.Types.Input.Keyboard.CursorKeys }) {
+    this.cursors = data.cursors
   }
 
   create() {
@@ -34,7 +40,7 @@ export default class UserInterface extends Phaser.Scene {
       this
     )
 
-    const coinIcon = this.physics.add.sprite(3, 17, TextureKeys.Coin)
+    const coinIcon = this.add.sprite(3, 17, TextureKeys.Coin)
     coinIcon.setOrigin(0, 0)
     // coinIcon.anims.play({
     //   key: CoinAnimsKeys.Rotating,
@@ -55,6 +61,33 @@ export default class UserInterface extends Phaser.Scene {
       ),
         sceneEvents.off(EventKeys.PlayerCoinsChanged)
     })
+
+    this.input.addPointer(1)
+    this.add
+      .image(
+        Number(GameConfig.width) - 26 - 20,
+        Number(GameConfig.height) - 26 - 20,
+        TextureKeys.FlyingKnifeButton
+      )
+      .setScale(2)
+      .setDepth(DepthKeys.UserInterface)
+      .setInteractive()
+
+    this.input.on(
+      'gameobjectdown',
+      (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Image) => {
+        this.cursors.space.isDown = true
+        gameObject.setTint(0x999999)
+      }
+    )
+
+    this.input.on(
+      'gameobjectup',
+      (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Image) => {
+        this.cursors.space.isDown = false
+        gameObject.clearTint()
+      }
+    )
   }
 
   private handlePlayerHealthChanged(health: number) {
