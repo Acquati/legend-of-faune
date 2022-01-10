@@ -1,3 +1,5 @@
+import VirtualJoyStick from 'phaser3-rex-plugins/plugins/virtualjoystick'
+import VirtualJoyStickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin'
 import DepthKeys from '../consts/DepthKeys'
 import EventKeys from '../consts/EventKeys'
 import SceneKeys from '../consts/SceneKeys'
@@ -11,7 +13,7 @@ import { debugDraw } from '../utils/debug'
 
 export default class MainScene extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys
-  private joyStick!: any
+  private joyStick!: VirtualJoyStick
   private player!: Player
   private flyingKnifes!: Phaser.Physics.Arcade.Group
   private lizards01!: Phaser.Physics.Arcade.Group
@@ -34,28 +36,32 @@ export default class MainScene extends Phaser.Scene {
       y: 20
     }
 
-    this.joyStick = this.plugins
-      .get('rexVirtualJoystick')
-      .add(this, {
-        x: joyStickConfig.radius + joyStickConfig.x,
-        y:
-          Number(GameConfig.height) -
-          (joyStickConfig.radius + joyStickConfig.y),
-        radius: joyStickConfig.radius,
-        base: this.add.circle(0, 0, joyStickConfig.radius, 0x888888, 0.2),
-        thumb: this.add.circle(
-          0,
-          0,
-          Math.floor(joyStickConfig.radius / 2),
-          0xcccccc,
-          0.2
-        ),
-        dir: '8dir', // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
-        // fixed: true,
-        forceMin: 10
-        // enable: true
-      })
-      .on('update', this.joyStickUpdate, this)
+    const joyStickPlugin = this.plugins.get(
+      'rexVirtualJoystick'
+    ) as VirtualJoyStickPlugin
+
+    this.joyStick = joyStickPlugin.add(this, {
+      x: joyStickConfig.radius + joyStickConfig.x,
+      y: Number(GameConfig.height) - (joyStickConfig.radius + joyStickConfig.y),
+      radius: joyStickConfig.radius,
+      base: this.add.circle(0, 0, joyStickConfig.radius, 0x888888, 0.2),
+      thumb: this.add.circle(
+        0,
+        0,
+        Math.floor(joyStickConfig.radius / 2),
+        0xcccccc,
+        0.2
+      ),
+      dir: '8dir', // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
+      // fixed: true,
+      forceMin: 10
+      // enable: true
+    })
+
+    const joyStickEvent = this.joyStick as unknown as Phaser.Events.EventEmitter
+
+    joyStickEvent.on('update', this.joyStickUpdate, this)
+
     this.joyStickUpdate()
 
     const map = this.make.tilemap({ key: TextureKeys.Dungeon01 })

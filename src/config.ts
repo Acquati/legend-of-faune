@@ -1,4 +1,4 @@
-import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js'
+import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin'
 import Preloader from './scenes/Preloader'
 import MainScene from './scenes/MainScene'
 import UserInterface from './scenes/UserInterface'
