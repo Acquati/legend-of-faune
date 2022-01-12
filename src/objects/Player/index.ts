@@ -7,19 +7,6 @@ import { sceneEvents } from '../../events/EventCenter'
 import throwFlyingKnife from './throwFlyingKnife'
 import playerMovement from './playerMovement'
 
-declare global {
-  namespace Phaser.GameObjects {
-    interface GameObjectFactory {
-      player(
-        x: number,
-        y: number,
-        texture: string,
-        frame?: string | number
-      ): Player
-    }
-  }
-}
-
 enum HealthState {
   IDLE,
   DAMAGE,
@@ -29,7 +16,7 @@ enum HealthState {
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE
   private damageTimer = 0
-  private speed = 80
+  private speed = 70
   private flyingKnifesTimer = 0
   private flyingKnifesOnCooldown = false
   private flyingKnifes!: Phaser.Physics.Arcade.Group

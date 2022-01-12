@@ -10,7 +10,6 @@ const windowHeight = Math.floor(window.innerHeight / 2)
 const GameConfig: Phaser.Types.Core.GameConfig = {
   width: windowWidth,
   height: windowHeight,
-  zoom: 2,
   parent: 'game',
   scene: [Preloader, MainScene, UserInterface, GameOver],
   title: 'Legend of Faune',
@@ -23,6 +22,9 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
       debug: false,
       gravity: { y: 0 }
     }
+  },
+  scale: {
+    zoom: Phaser.Scale.Zoom.ZOOM_2X
   },
   backgroundColor: '#000000',
   antialiasGL: false,
