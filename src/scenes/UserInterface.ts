@@ -1,4 +1,3 @@
-import GameConfig from '../config'
 import DepthKeys from '../consts/DepthKeys'
 import EventKeys from '../consts/EventKeys'
 import SceneKeys from '../consts/SceneKeys'
@@ -65,8 +64,8 @@ export default class UserInterface extends Phaser.Scene {
     this.input.addPointer(1)
     this.add
       .image(
-        Number(GameConfig.width) - 26 - 20,
-        Number(GameConfig.height) - 26 - 20,
+        this.scale.width - 26 - 20,
+        this.scale.height - 26 - 20,
         TextureKeys.FlyingKnifeButton
       )
       .setScale(2)

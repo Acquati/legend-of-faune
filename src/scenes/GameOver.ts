@@ -7,16 +7,11 @@ export default class GameOver extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.scale
-    // x, y will be middle of screen
-    const x = width * 0.5
-    const y = height * 0.5
-
     this.input.addPointer(1)
     this.add
       .bitmapText(
-        x,
-        y,
+        Math.floor(this.scale.width / 2),
+        Math.floor(this.scale.height / 2),
         'pixel-white',
         'Press SPACE or touch the screen\nto play again.',
         12,

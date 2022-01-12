@@ -4,7 +4,6 @@ import DepthKeys from '../consts/DepthKeys'
 import EventKeys from '../consts/EventKeys'
 import SceneKeys from '../consts/SceneKeys'
 import TextureKeys from '../consts/TextureKeys'
-import GameConfig from '../config'
 import Lizard01 from '../objects/Lizard01'
 import Player from '../objects/Player'
 import TreasureChest from '../objects/TreasureChest'
@@ -42,7 +41,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.joyStick = joyStickPlugin.add(this, {
       x: joyStickConfig.radius + joyStickConfig.x,
-      y: Number(GameConfig.height) - (joyStickConfig.radius + joyStickConfig.y),
+      y: this.scale.height - (joyStickConfig.radius + joyStickConfig.y),
       radius: joyStickConfig.radius,
       base: this.add
         .circle(0, 0, joyStickConfig.radius, 0x888888, 0.2)
