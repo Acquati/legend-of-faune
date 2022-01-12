@@ -80,7 +80,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this
       )
     } else {
-      this.setVelocity(direction.x, direction.y)
+      this.setVelocity(direction.x * 1.5, direction.y * 1.5)
       this.damageTimer = 0
       this.healthState = HealthState.DAMAGE
       this.setTint(0xff9999)
@@ -96,7 +96,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
       case HealthState.DAMAGE:
         this.damageTimer += delta
-        if (this.damageTimer >= 500) {
+        if (this.damageTimer >= 300) {
           this.healthState = HealthState.IDLE
           this.damageTimer = 0
           this.clearTint()
