@@ -39,6 +39,10 @@ yarn run lint
 
 Access [localhost:8080](http://localhost:8080/) in your browser.
 
+## Credits
+
+[Dungeon Tileset II](https://0x72.itch.io/dungeontileset-ii) by 0x72.
+
 ## Troubleshoot
 
 ### Update NPM & YARN global command on Ubuntu

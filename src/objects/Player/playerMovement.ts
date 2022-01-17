@@ -7,7 +7,8 @@ const moveUpRight = (
   player.scaleX = 1
   player.body.offset.x = player.body.width
 
-  player.setVelocity(movementVelocity, -movementVelocity)
+  const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
+  player.setVelocity(velocity, -velocity)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
 }
 
@@ -18,7 +19,8 @@ const moveRightDown = (
   player.scaleX = 1
   player.body.offset.x = player.body.width
 
-  player.setVelocity(movementVelocity, movementVelocity)
+  const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
+  player.setVelocity(velocity, velocity)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
 }
 
@@ -29,7 +31,8 @@ const moveDownLeft = (
   player.scaleX = -1
   player.body.offset.x = player.body.width * 2
 
-  player.setVelocity(-movementVelocity, movementVelocity)
+  const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
+  player.setVelocity(-velocity, velocity)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
 }
 
@@ -40,7 +43,8 @@ const moveLeftUp = (
   player.scaleX = -1
   player.body.offset.x = player.body.width * 2
 
-  player.setVelocity(-movementVelocity, -movementVelocity)
+  const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
+  player.setVelocity(-velocity, -velocity)
   player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
 }
 
