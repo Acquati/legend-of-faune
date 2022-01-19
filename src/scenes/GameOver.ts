@@ -14,7 +14,7 @@ export default class GameOver extends Phaser.Scene {
         Math.floor(this.scale.height / 2),
         'pixel-white',
         'Press SPACE or touch the screen\nto play again.',
-        12,
+        24,
         1
       )
       .setOrigin(0.5)

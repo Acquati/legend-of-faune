@@ -34,7 +34,7 @@ const randomDirection = (exclude: Direction) => {
 export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE
   private direction = Direction.RIGHT
-  private speed = 50
+  private movementVelocity = 100
   private moveEvent: Phaser.Time.TimerEvent
   private damageTimer = 0
   private deathTimer = 0
@@ -59,7 +59,7 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this)
     this.setDepth(DepthKeys.Enemy)
     const body = this.body as Phaser.Physics.Arcade.Body
-    body.setSize(16, 16)
+    body.setSize(32, 32)
     body.onCollide = true
 
     scene.physics.world.on(
@@ -156,7 +156,7 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
 
     switch (this.direction) {
       case Direction.UP:
-        this.setVelocity(0, -this.speed)
+        this.setVelocity(0, -this.movementVelocity)
         this.anims.play(
           {
             key: Lizard01AnimsKeys.WalkSide
@@ -166,7 +166,7 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
         break
 
       case Direction.DOWN:
-        this.setVelocity(0, this.speed)
+        this.setVelocity(0, this.movementVelocity)
         this.anims.play(
           {
             key: Lizard01AnimsKeys.WalkSide
@@ -178,7 +178,7 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
       case Direction.LEFT:
         this.scaleX = -1
         this.body.offset.x = this.body.width * 2
-        this.setVelocity(-this.speed, 0)
+        this.setVelocity(-this.movementVelocity, 0)
         this.anims.play(
           {
             key: Lizard01AnimsKeys.WalkSide
@@ -190,7 +190,7 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
       case Direction.RIGHT:
         this.scaleX = 1
         this.body.offset.x = this.body.width
-        this.setVelocity(this.speed, 0)
+        this.setVelocity(this.movementVelocity, 0)
         this.anims.play(
           {
             key: Lizard01AnimsKeys.WalkSide

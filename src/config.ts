@@ -4,8 +4,8 @@ import MainScene from './scenes/MainScene'
 import UserInterface from './scenes/UserInterface'
 import GameOver from './scenes/GameOver'
 
-const windowWidth = Math.floor(window.innerWidth / 2)
-const windowHeight = Math.floor(window.innerHeight / 2)
+const windowWidth = Math.floor(window.innerWidth)
+const windowHeight = Math.floor(window.innerHeight)
 
 const GameConfig: Phaser.Types.Core.GameConfig = {
   width: windowWidth,
@@ -23,9 +23,9 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
       gravity: { y: 0 }
     }
   },
-  scale: {
-    zoom: Phaser.Scale.Zoom.ZOOM_2X
-  },
+  // scale: {
+  //   zoom: Phaser.Scale.Zoom.ZOOM_2X
+  // },
   backgroundColor: '#000000',
   antialiasGL: false,
   pixelArt: true,

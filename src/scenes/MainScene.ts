@@ -30,9 +30,9 @@ export default class MainScene extends Phaser.Scene {
     this.scene.run(SceneKeys.UserInterface, { cursors: this.cursors })
 
     const joyStickConfig = {
-      radius: 40,
-      x: 20,
-      y: 20
+      radius: 80,
+      x: 40,
+      y: 40
     }
 
     const joyStickPlugin = this.plugins.get(
@@ -65,8 +65,8 @@ export default class MainScene extends Phaser.Scene {
     const tileset = map.addTilesetImage(
       'dungeon01',
       TextureKeys.Dungeon01Tiles,
-      16,
-      16
+      32,
+      32
     )
     const floorLayer = map.createLayer('floor', tileset)
     floorLayer.setDepth(DepthKeys.Floor)
@@ -92,7 +92,15 @@ export default class MainScene extends Phaser.Scene {
       // maxSize: 3
     })
 
-    this.player = new Player(this, 48, 80, TextureKeys.Faune)
+    const playerSpawn = map.getObjectLayer('player-spawn')
+    playerSpawn.objects.forEach((position) => {
+      this.player = new Player(
+        this,
+        Number(position.x),
+        Number(position.y),
+        TextureKeys.Faune
+      )
+    })
     this.player.setFlyingKnifes(this.flyingKnifes)
 
     this.lizards01 = this.physics.add.group({

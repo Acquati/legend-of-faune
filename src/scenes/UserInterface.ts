@@ -24,9 +24,9 @@ export default class UserInterface extends Phaser.Scene {
     this.hearts.createMultiple({
       key: TextureKeys.UIHeartFull,
       setXY: {
-        x: 10,
-        y: 10,
-        stepX: 16
+        x: 20,
+        y: 20,
+        stepX: 32
       },
       quantity: 3
     })
@@ -39,14 +39,14 @@ export default class UserInterface extends Phaser.Scene {
       this
     )
 
-    const coinIcon = this.add.sprite(3, 17, TextureKeys.Coin)
+    const coinIcon = this.add.sprite(6, 34, TextureKeys.Coin)
     coinIcon.setOrigin(0, 0)
     // coinIcon.anims.play({
     //   key: CoinAnimsKeys.Rotating,
     //   repeat: -1
     // })
 
-    const coinsLabel = this.add.bitmapText(13, 18, 'pixel-white', '0', 8)
+    const coinsLabel = this.add.bitmapText(26, 36, 'pixel-white', '0', 16)
 
     sceneEvents.on(EventKeys.PlayerCoinsChanged, (coins: number) => {
       coinsLabel.setText(coins.toString())
@@ -64,8 +64,8 @@ export default class UserInterface extends Phaser.Scene {
     this.input.addPointer(1)
     this.add
       .image(
-        this.scale.width - 26 - 20,
-        this.scale.height - 26 - 20,
+        this.scale.width - 52 - 40,
+        this.scale.height - 52 - 40,
         TextureKeys.FlyingKnifeButton
       )
       .setScale(2)

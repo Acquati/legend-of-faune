@@ -1,91 +1,91 @@
 { "frames": {
    "0": {
-    "frame": { "x": 1, "y": 1, "w": 18, "h": 23 },
+    "frame": { "x": 1, "y": 1, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 200
    },
    "1": {
-    "frame": { "x": 20, "y": 1, "w": 18, "h": 23 },
+    "frame": { "x": 36, "y": 1, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 200
    },
    "2": {
-    "frame": { "x": 39, "y": 1, "w": 18, "h": 23 },
+    "frame": { "x": 71, "y": 1, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 200
    },
    "3": {
-    "frame": { "x": 58, "y": 1, "w": 18, "h": 23 },
+    "frame": { "x": 106, "y": 1, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 200
    },
    "4": {
-    "frame": { "x": 1, "y": 25, "w": 18, "h": 23 },
+    "frame": { "x": 1, "y": 46, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 150
    },
    "5": {
-    "frame": { "x": 20, "y": 25, "w": 18, "h": 23 },
+    "frame": { "x": 36, "y": 46, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 150
    },
    "6": {
-    "frame": { "x": 39, "y": 25, "w": 18, "h": 23 },
+    "frame": { "x": 71, "y": 46, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 150
    },
    "7": {
-    "frame": { "x": 58, "y": 25, "w": 18, "h": 23 },
+    "frame": { "x": 106, "y": 46, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 150
    },
    "8": {
-    "frame": { "x": 1, "y": 49, "w": 18, "h": 23 },
+    "frame": { "x": 1, "y": 91, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 200
    },
    "9": {
-    "frame": { "x": 20, "y": 49, "w": 18, "h": 23 },
+    "frame": { "x": 36, "y": 91, "w": 34, "h": 44 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 16, "y": 10, "w": 16, "h": 21 },
-    "sourceSize": { "w": 48, "h": 48 },
+    "spriteSourceSize": { "x": 32, "y": 20, "w": 32, "h": 42 },
+    "sourceSize": { "w": 96, "h": 96 },
     "duration": 200
    }
  },
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.30-x64",
+  "version": "1.2.32-x64",
   "image": "lizard01.png",
   "format": "RGBA8888",
-  "size": { "w": 76, "h": 72 },
+  "size": { "w": 140, "h": 135 },
   "scale": "1",
   "frameTags": [
    { "name": "lizard01-idle-side", "from": 0, "to": 3, "direction": "forward" },

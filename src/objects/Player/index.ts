@@ -16,7 +16,7 @@ enum HealthState {
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE
   private damageTimer = 0
-  private movementVelocity = 70
+  private movementVelocity = 140
   private flyingKnifesTimer = 0
   private flyingKnifesOnCooldown = false
   private flyingKnifes!: Phaser.Physics.Arcade.Group
@@ -48,7 +48,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setDepth(DepthKeys.Player)
 
     const body = this.body as Phaser.Physics.Arcade.Body
-    body.setSize(16, 16)
+    body.setSize(32, 32)
   }
 
   setFlyingKnifes(flyingKnifes: Phaser.Physics.Arcade.Group) {
@@ -81,7 +81,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       )
     } else {
       this.setVelocity(direction.x * 1.5, direction.y * 1.5)
-      this.damageTimer = 0
       this.healthState = HealthState.DAMAGE
       this.setTint(0xff9999)
     }
@@ -96,7 +95,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
       case HealthState.DAMAGE:
         this.damageTimer += delta
-        if (this.damageTimer >= 300) {
+        if (this.damageTimer >= 500) {
           this.healthState = HealthState.IDLE
           this.damageTimer = 0
           this.clearTint()

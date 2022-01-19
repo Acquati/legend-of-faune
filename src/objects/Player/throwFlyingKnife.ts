@@ -7,8 +7,7 @@ const throwFlyingKnife = (
   flyingKnifes: Phaser.Physics.Arcade.Group,
   player: Player
 ) => {
-  if (!flyingKnifes) return
-
+  const movementVelocity = 250
   const parts = player.anims.currentAnim.key.split('-')
   const direction = parts[2]
 
@@ -20,7 +19,7 @@ const throwFlyingKnife = (
     case 'up':
       flyingKnife = flyingKnifes.get(
         player.x,
-        player.y - 10,
+        player.y - 20,
         TextureKeys.FlyingKnife
       )
       flyingKnife.setDepth(DepthKeys.Player - 1)
@@ -37,7 +36,7 @@ const throwFlyingKnife = (
     case 'down':
       flyingKnife = flyingKnifes.get(
         player.x,
-        player.y + 10,
+        player.y + 20,
         TextureKeys.FlyingKnife
       )
       flyingKnife.setDepth(DepthKeys.PlayerWeapon)
@@ -55,7 +54,7 @@ const throwFlyingKnife = (
     case 'side':
       if (player.scaleX < 0) {
         flyingKnife = flyingKnifes.get(
-          player.x - 10,
+          player.x - 20,
           player.y,
           TextureKeys.FlyingKnife
         )
@@ -64,7 +63,7 @@ const throwFlyingKnife = (
         vector.x = -1
       } else {
         flyingKnife = flyingKnifes.get(
-          player.x + 10,
+          player.x + 20,
           player.y,
           TextureKeys.FlyingKnife
         )
@@ -84,7 +83,10 @@ const throwFlyingKnife = (
       break
   }
 
-  flyingKnife.setVelocity(vector.x * 175, vector.y * 175)
+  flyingKnife.setVelocity(
+    vector.x * movementVelocity,
+    vector.y * movementVelocity
+  )
 }
 
 export default throwFlyingKnife
