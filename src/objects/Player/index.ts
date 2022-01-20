@@ -105,10 +105,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   update(delta: number, cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-    if (
-      this.healthState === HealthState.DAMAGE ||
-      this.healthState === HealthState.DEAD
-    ) {
+    if (this.healthState === HealthState.DEAD) {
       return
     }
 
