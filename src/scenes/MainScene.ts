@@ -61,15 +61,17 @@ export default class MainScene extends Phaser.Scene {
 
     this.joyStickUpdate()
 
-    const map = this.make.tilemap({ key: TextureKeys.Dungeon01 })
+    const map = this.make.tilemap({ key: TextureKeys.Forest01 })
     const tileset = map.addTilesetImage(
-      'dungeon01',
-      TextureKeys.Dungeon01Tiles,
+      'forest01',
+      TextureKeys.Forest01Tiles,
       32,
       32
     )
-    const floorLayer = map.createLayer('floor', tileset)
-    floorLayer.setDepth(DepthKeys.Floor)
+    const groundLayer = map.createLayer('ground', tileset)
+    groundLayer.setDepth(DepthKeys.Ground)
+    groundLayer.setCollisionByProperty({ collides: true })
+    debugDraw(groundLayer, this)
     const wallsLayer = map.createLayer('walls', tileset)
     wallsLayer.setDepth(DepthKeys.Walls)
     wallsLayer.setCollisionByProperty({ collides: true })
@@ -111,11 +113,20 @@ export default class MainScene extends Phaser.Scene {
       this.lizards01.get(lizard01.x, lizard01.y, TextureKeys.Lizard01)
     })
 
-    this.physics.add.collider(this.player, [wallsLayer, upperWallsLayer])
-    this.physics.add.collider(this.lizards01, [wallsLayer, upperWallsLayer])
+    this.physics.add.collider(this.player, [
+      groundLayer,
+      wallsLayer,
+      upperWallsLayer
+    ])
+    this.physics.add.collider(this.lizards01, [
+      groundLayer,
+      wallsLayer,
+      upperWallsLayer
+    ])
+    // this.physics.world.setBounds(x, y, width, height)
     this.physics.add.collider(
       this.flyingKnifes,
-      [wallsLayer, upperWallsLayer],
+      [groundLayer, wallsLayer, upperWallsLayer],
       this.handleFlyingKnifesWallsCollision,
       undefined,
       this
@@ -144,6 +155,12 @@ export default class MainScene extends Phaser.Scene {
       undefined,
       this
     )
+
+    // Phaser.Geom.Rectangle.Overlaps(this.physics.world.bounds, this.player.getBounds())
+
+    this.physics.world.on('worldbounds', (body) => {
+      console.log(body)
+    })
 
     this.cameras.main.startFollow(this.player, true)
   }
@@ -245,8 +262,23 @@ export default class MainScene extends Phaser.Scene {
     this.flyingKnifes.remove(object1, true, true)
   }
 
+  private removeIfOutOfBounds(body: Phaser.GameObjects.GameObject) {
+    const sprite = body as Phaser.Physics.Arcade.Sprite
+
+    if (
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.physics.world.bounds,
+        sprite.getBounds()
+      )
+    ) {
+      this.flyingKnifes.remove(sprite, true, true)
+    }
+  }
+
   update(time: number, delta: number) {
     if (!this.cursors || !this.player) return
+
+    this.flyingKnifes.children.each(this.removeIfOutOfBounds, this)
 
     this.player.update(delta, this.cursors)
   }

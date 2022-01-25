@@ -13,6 +13,8 @@ export default class Preloader extends Phaser.Scene {
       'fonts/pixel-white.xml'
     )
 
+    this.load.image(TextureKeys.Forest01Tiles, 'maps/tiles/forest01.png')
+    this.load.tilemapTiledJSON(TextureKeys.Forest01, 'maps/forest01.json')
     this.load.image(TextureKeys.Dungeon01Tiles, 'maps/tiles/dungeon01.png')
     this.load.tilemapTiledJSON(TextureKeys.Dungeon01, 'maps/dungeon01.json')
 

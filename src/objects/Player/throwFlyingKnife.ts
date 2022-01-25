@@ -87,6 +87,7 @@ const throwFlyingKnife = (
     vector.x * movementVelocity,
     vector.y * movementVelocity
   )
+  // flyingKnife.setCollideWorldBounds(true)
 }
 
 export default throwFlyingKnife

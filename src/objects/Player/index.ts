@@ -49,6 +49,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     const body = this.body as Phaser.Physics.Arcade.Body
     body.setSize(32, 32)
+    this.setCollideWorldBounds(true)
   }
 
   setFlyingKnifes(flyingKnifes: Phaser.Physics.Arcade.Group) {

@@ -41,7 +41,8 @@ Access [localhost:8080](http://localhost:8080/) in your browser.
 
 ## Credits
 
-[Dungeon Tileset II](https://0x72.itch.io/dungeontileset-ii) by 0x72.
+- 0x72 - [0x72.itch.io](https://0x72.itch.io/)
+- ansimuz - [ansimuz.itch.io](https://ansimuz.itch.io/)
 
 ## Troubleshoot
 

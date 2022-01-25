@@ -1,6 +1,8 @@
 enum TextureKeys {
   Dungeon01Tiles = 'dungeon01-tiles',
   Dungeon01 = 'dungeon01',
+  Forest01Tiles = 'forest01-tiles',
+  Forest01 = 'forest01',
   Faune = 'faune',
   Lizard01 = 'lizard01',
   FlyingKnife = 'flying-knife',
