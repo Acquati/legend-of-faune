@@ -19,13 +19,10 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       gravity: { y: 0 }
     }
   },
-  // scale: {
-  //   zoom: Phaser.Scale.Zoom.ZOOM_2X
-  // },
   backgroundColor: '#000000',
   antialiasGL: false,
   pixelArt: true,
