@@ -156,12 +156,8 @@ export default class MainScene extends Phaser.Scene {
       this
     )
 
-    // Phaser.Geom.Rectangle.Overlaps(this.physics.world.bounds, this.player.getBounds())
-
-    this.physics.world.on('worldbounds', (body) => {
-      console.log(body)
-    })
-
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     this.cameras.main.startFollow(this.player, true)
   }
 

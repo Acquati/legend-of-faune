@@ -75,6 +75,8 @@ export default class Lizard01 extends Phaser.Physics.Arcade.Sprite {
       },
       loop: true
     })
+
+    this.setCollideWorldBounds(true)
   }
 
   handleDamage() {
