@@ -34,7 +34,6 @@ export default class MainScene extends Phaser.Scene {
       x: 40,
       y: 40
     }
-
     const joyStickPlugin = this.plugins.get(
       'rexVirtualJoystick'
     ) as VirtualJoyStickPlugin
@@ -54,11 +53,8 @@ export default class MainScene extends Phaser.Scene {
       forceMin: 10
       // enable: true
     })
-
     const joyStickEvent = this.joyStick as unknown as Phaser.Events.EventEmitter
-
     joyStickEvent.on('update', this.joyStickUpdate, this)
-
     this.joyStickUpdate()
 
     const map = this.make.tilemap({ key: TextureKeys.Forest01 })
@@ -68,6 +64,7 @@ export default class MainScene extends Phaser.Scene {
       32,
       32
     )
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     const groundLayer = map.createLayer('ground', tileset)
     groundLayer.setDepth(DepthKeys.Ground)
     groundLayer.setCollisionByProperty({ collides: true })
@@ -123,7 +120,6 @@ export default class MainScene extends Phaser.Scene {
       wallsLayer,
       upperWallsLayer
     ])
-    // this.physics.world.setBounds(x, y, width, height)
     this.physics.add.collider(
       this.flyingKnifes,
       [groundLayer, wallsLayer, upperWallsLayer],
@@ -156,7 +152,6 @@ export default class MainScene extends Phaser.Scene {
       this
     )
 
-    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     this.cameras.main.startFollow(this.player, true)
   }
