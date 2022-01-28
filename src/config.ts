@@ -4,12 +4,9 @@ import MainScene from './scenes/MainScene'
 import UserInterface from './scenes/UserInterface'
 import GameOver from './scenes/GameOver'
 
-const windowWidth = Math.floor(window.innerWidth)
-const windowHeight = Math.floor(window.innerHeight)
-
 const GameConfig: Phaser.Types.Core.GameConfig = {
-  width: windowWidth,
-  height: windowHeight,
+  width: Math.floor(window.innerWidth),
+  height: Math.floor(window.innerHeight),
   parent: 'game',
   scene: [Preloader, MainScene, UserInterface, GameOver],
   title: 'Legend of Faune',
@@ -27,7 +24,7 @@ const GameConfig: Phaser.Types.Core.GameConfig = {
   antialiasGL: false,
   pixelArt: true,
   roundPixels: true,
-  // powerPreference: 'high-performance'
+  // powerPreference: 'high-performance',
   plugins: {
     global: [
       {
