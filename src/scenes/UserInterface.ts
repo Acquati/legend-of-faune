@@ -4,10 +4,12 @@ import SceneKeys from '../consts/SceneKeys'
 import TextureKeys from '../consts/TextureKeys'
 import VirtualJoyStick from 'phaser3-rex-plugins/plugins/virtualjoystick'
 import VirtualJoyStickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin'
+import Player from '../objects/Player'
 import { sceneEvents } from '../events/EventCenter'
 
 export default class UserInterface extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys
+  private player!: Player
   private joyStick!: VirtualJoyStick
   private hearts!: Phaser.GameObjects.Group
 
@@ -15,8 +17,12 @@ export default class UserInterface extends Phaser.Scene {
     super({ key: SceneKeys.UserInterface })
   }
 
-  init(data: { cursors: Phaser.Types.Input.Keyboard.CursorKeys }) {
+  init(data: {
+    cursors: Phaser.Types.Input.Keyboard.CursorKeys
+    player: Player
+  }) {
     this.cursors = data.cursors
+    this.player = data.player
   }
 
   create() {
@@ -51,6 +57,10 @@ export default class UserInterface extends Phaser.Scene {
       classType: Phaser.GameObjects.Image
     })
 
+    const maxHearts =
+      this.player.maxHealth % 2 === 0
+        ? this.player.maxHealth / 2
+        : (this.player.maxHealth + 1) / 2
     this.hearts.createMultiple({
       key: TextureKeys.UIHeartFull,
       setXY: {
@@ -58,11 +68,10 @@ export default class UserInterface extends Phaser.Scene {
         y: 20,
         stepX: 32
       },
-      quantity: 3
+      quantity: maxHearts
     })
-
+    this.handlePlayerHealthChanged(this.player.health)
     this.hearts.setDepth(DepthKeys.UserInterface)
-
     sceneEvents.on(
       EventKeys.PlayerHealthChanged,
       this.handlePlayerHealthChanged,
@@ -75,9 +84,7 @@ export default class UserInterface extends Phaser.Scene {
     //   key: CoinAnimsKeys.Rotating,
     //   repeat: -1
     // })
-
     const coinsLabel = this.add.bitmapText(26, 36, 'pixel-white', '0', 16)
-
     sceneEvents.on(EventKeys.PlayerCoinsChanged, (coins: number) => {
       coinsLabel.setText(coins.toString())
     })
@@ -101,7 +108,6 @@ export default class UserInterface extends Phaser.Scene {
       .setScale(2)
       .setDepth(DepthKeys.UserInterface)
       .setInteractive()
-
     this.input.on(
       'gameobjectdown',
       (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Image) => {
@@ -109,7 +115,6 @@ export default class UserInterface extends Phaser.Scene {
         gameObject.setTint(0x999999)
       }
     )
-
     this.input.on(
       'gameobjectup',
       (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Image) => {
@@ -174,8 +179,12 @@ export default class UserInterface extends Phaser.Scene {
     this.hearts.children.each((gameObject, index) => {
       const hearth = gameObject as Phaser.GameObjects.Image
 
-      if (index < health) {
-        hearth.setTexture(TextureKeys.UIHeartFull)
+      if (index * 2 + 1 <= health) {
+        if (health - (index * 2 + 2) >= 0) {
+          hearth.setTexture(TextureKeys.UIHeartFull)
+        } else {
+          hearth.setTexture(TextureKeys.UIHeartHalf)
+        }
       } else {
         hearth.setTexture(TextureKeys.UIHeartEmpty)
       }

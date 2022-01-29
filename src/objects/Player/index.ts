@@ -29,7 +29,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private flyingKnifes!: Phaser.Physics.Arcade.Group
   private activeChest?: TreasureChest
 
-  private _health = 3
+  private _maxHealth = 14
+  get maxHealth() {
+    return this._maxHealth
+  }
+
+  private _health = 12
   get health() {
     return this._health
   }

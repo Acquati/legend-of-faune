@@ -24,8 +24,6 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.run(SceneKeys.UserInterface, { cursors: this.cursors })
-
     const map = this.make.tilemap({ key: TextureKeys.Forest01 })
     const tileset = map.addTilesetImage(
       'forest01',
@@ -123,6 +121,11 @@ export default class MainScene extends Phaser.Scene {
 
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     this.cameras.main.startFollow(this.player, true)
+
+    this.scene.run(SceneKeys.UserInterface, {
+      cursors: this.cursors,
+      player: this.player
+    })
   }
 
   update(time: number, delta: number) {
@@ -145,7 +148,6 @@ export default class MainScene extends Phaser.Scene {
     object1: Phaser.Types.Physics.Arcade.GameObjectWithBody,
     object2: Phaser.Types.Physics.Arcade.GameObjectWithBody
   ) {
-    console.log('entrou')
     const lizard01 = object2 as Lizard01
 
     const dx = this.player.x - lizard01.x
