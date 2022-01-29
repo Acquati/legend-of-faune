@@ -9,13 +9,20 @@ import playerMovement from './playerMovement'
 
 enum HealthState {
   IDLE,
-  DAMAGE,
+  DAMAGED,
   DEAD
+}
+
+enum MovementState {
+  IDLE,
+  PUSHED
 }
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE
-  private damageTimer = 0
+  private movementState = MovementState.IDLE
+  private damagedTimer = 0
+  private pushedTimer = 0
   private movementVelocity = 140
   private flyingKnifesTimer = 0
   private flyingKnifesOnCooldown = false
@@ -52,53 +59,31 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true)
   }
 
-  setFlyingKnifes(flyingKnifes: Phaser.Physics.Arcade.Group) {
-    this.flyingKnifes = flyingKnifes
-  }
-
-  setChest(chest: TreasureChest) {
-    this.activeChest = chest
-  }
-
-  handleDamage(direction: Phaser.Math.Vector2) {
-    if (this._health <= 0) {
-      return
-    }
-
-    if (this.healthState === HealthState.DAMAGE) return
-
-    this._health -= 1
-
-    if (this._health <= 0) {
-      this.healthState = HealthState.DEAD
-      this.setDepth(DepthKeys.Enemy - 1)
-      this.setVelocity(0, 0)
-      this.anims.play({ key: FauneAnimsKeys.DieSide })
-      this.scene.time.delayedCall(
-        1000,
-        () => this.scene.scene.run(SceneKeys.GameOver),
-        [],
-        this
-      )
-    } else {
-      this.setVelocity(direction.x * 1.5, direction.y * 1.5)
-      this.healthState = HealthState.DAMAGE
-      this.setTint(0xff9999)
-    }
-  }
-
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta)
+
+    switch (this.movementState) {
+      case MovementState.IDLE:
+        break
+
+      case MovementState.PUSHED:
+        this.pushedTimer += delta
+        if (this.pushedTimer >= 500) {
+          this.movementState = MovementState.IDLE
+          this.pushedTimer = 0
+        }
+        break
+    }
 
     switch (this.healthState) {
       case HealthState.IDLE:
         break
 
-      case HealthState.DAMAGE:
-        this.damageTimer += delta
-        if (this.damageTimer >= 500) {
+      case HealthState.DAMAGED:
+        this.damagedTimer += delta
+        if (this.damagedTimer >= 1000) {
           this.healthState = HealthState.IDLE
-          this.damageTimer = 0
+          this.damagedTimer = 0
           this.clearTint()
         }
         break
@@ -106,7 +91,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   update(delta: number, cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-    if (this.healthState === HealthState.DEAD) {
+    if (
+      this.healthState === HealthState.DEAD ||
+      this.movementState === MovementState.PUSHED
+    ) {
       return
     }
 
@@ -135,5 +123,39 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     playerMovement(cursors, this, this.movementVelocity)
+  }
+
+  setFlyingKnifes(flyingKnifes: Phaser.Physics.Arcade.Group) {
+    this.flyingKnifes = flyingKnifes
+  }
+
+  setChest(chest: TreasureChest) {
+    this.activeChest = chest
+  }
+
+  handleDamage(direction: Phaser.Math.Vector2) {
+    if (this._health <= 0) {
+      return
+    }
+
+    this._health -= 1
+
+    if (!(this._health <= 0)) {
+      this.setVelocity(direction.x * 2, direction.y * 2)
+      this.movementState = MovementState.PUSHED
+      this.healthState = HealthState.DAMAGED
+      this.setTint(0xff9999)
+    } else {
+      this.healthState = HealthState.DEAD
+      this.setDepth(DepthKeys.Enemy - 1)
+      this.setVelocity(0, 0)
+      this.anims.play({ key: FauneAnimsKeys.DieSide })
+      this.scene.time.delayedCall(
+        1000,
+        () => this.scene.scene.run(SceneKeys.GameOver),
+        [],
+        this
+      )
+    }
   }
 }
