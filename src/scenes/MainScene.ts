@@ -122,6 +122,9 @@ export default class MainScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     this.cameras.main.startFollow(this.player, true)
 
+    this.scene.run(SceneKeys.JoyStickInterface, {
+      cursors: this.cursors
+    })
     this.scene.run(SceneKeys.UserInterface, {
       cursors: this.cursors,
       player: this.player
