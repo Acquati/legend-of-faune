@@ -9,7 +9,12 @@ const moveUpRight = (
 
   const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
   player.setVelocity(velocity, -velocity)
-  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+
+  if (player.anims.currentAnim.key === FauneAnimsKeys.WalkUp) {
+    player.anims.play({ key: FauneAnimsKeys.WalkUp }, true)
+  } else {
+    player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+  }
 }
 
 const moveRightDown = (
@@ -21,37 +26,61 @@ const moveRightDown = (
 
   const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
   player.setVelocity(velocity, velocity)
-  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+
+  if (player.anims.currentAnim.key === FauneAnimsKeys.WalkDown) {
+    player.anims.play({ key: FauneAnimsKeys.WalkDown }, true)
+  } else {
+    player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+  }
 }
 
 const moveDownLeft = (
   player: Phaser.Physics.Arcade.Sprite,
   movementVelocity: number
 ) => {
-  player.scaleX = -1
-  player.body.offset.x = player.body.width * 2
-
   const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
   player.setVelocity(-velocity, velocity)
-  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+
+  if (player.anims.currentAnim.key === FauneAnimsKeys.WalkDown) {
+    player.scaleX = 1
+    player.body.offset.x = player.body.width
+
+    player.anims.play({ key: FauneAnimsKeys.WalkDown }, true)
+  } else {
+    player.scaleX = -1
+    player.body.offset.x = player.body.width * 2
+
+    player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+  }
 }
 
 const moveLeftUp = (
   player: Phaser.Physics.Arcade.Sprite,
   movementVelocity: number
 ) => {
-  player.scaleX = -1
-  player.body.offset.x = player.body.width * 2
-
   const velocity = Math.round(Math.cos(Math.PI / 4) * movementVelocity)
   player.setVelocity(-velocity, -velocity)
-  player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+
+  if (player.anims.currentAnim.key === FauneAnimsKeys.WalkUp) {
+    player.scaleX = 1
+    player.body.offset.x = player.body.width
+
+    player.anims.play({ key: FauneAnimsKeys.WalkUp }, true)
+  } else {
+    player.scaleX = -1
+    player.body.offset.x = player.body.width * 2
+
+    player.anims.play({ key: FauneAnimsKeys.WalkSide }, true)
+  }
 }
 
 const moveUp = (
   player: Phaser.Physics.Arcade.Sprite,
   movementVelocity: number
 ) => {
+  player.scaleX = 1
+  player.body.offset.x = player.body.width
+
   player.setVelocity(0, -movementVelocity)
   player.anims.play({ key: FauneAnimsKeys.WalkUp }, true)
 }
@@ -71,6 +100,9 @@ const moveDown = (
   player: Phaser.Physics.Arcade.Sprite,
   movementVelocity: number
 ) => {
+  player.scaleX = 1
+  player.body.offset.x = player.body.width
+
   player.setVelocity(0, movementVelocity)
   player.anims.play({ key: FauneAnimsKeys.WalkDown }, true)
 }
